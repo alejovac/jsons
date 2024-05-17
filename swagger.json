@@ -909,6 +909,68 @@
         }
       }
     },
+    "/Identity/Recover": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecoverAccountRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecoverAccountRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecoverAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Identity/ResetPassword": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Identity/ServiceLogin": {
       "post": {
         "tags": [
@@ -1007,17 +1069,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FilterWorkerRequest"
+                "$ref": "#/components/schemas/FilterInstitutionRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/FilterWorkerRequest"
+                "$ref": "#/components/schemas/FilterInstitutionRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/FilterWorkerRequest"
+                "$ref": "#/components/schemas/FilterInstitutionRequest"
               }
             }
           }
@@ -1460,6 +1522,92 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/PatientRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Patient/GenerateAccount/{entityGuid}": {
+      "put": {
+        "tags": [
+          "Patient"
+        ],
+        "parameters": [
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePatientAccountRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePatientAccountRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePatientAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Patient/ChangePassword/{entityGuid}": {
+      "put": {
+        "tags": [
+          "Patient"
+        ],
+        "parameters": [
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePatientPasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePatientPasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePatientPasswordRequest"
               }
             }
           }
@@ -2135,6 +2283,44 @@
         }
       }
     },
+    "/Station/GetModalityList": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StationModalityListResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StationModalityListResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StationModalityListResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Station/GetByFilters": {
       "post": {
         "tags": [
@@ -2227,6 +2413,54 @@
       }
     },
     "/Station/Delete/{entityGuid}": {
+      "put": {
+        "tags": [
+          "Station"
+        ],
+        "parameters": [
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Station/Enable/{entityGuid}": {
+      "put": {
+        "tags": [
+          "Station"
+        ],
+        "parameters": [
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Station/Disable/{entityGuid}": {
       "put": {
         "tags": [
           "Station"
@@ -3105,6 +3339,315 @@
         }
       }
     },
+    "/Worker/{workerGuid}/StudyViewer/Get/{entityGuid}": {
+      "get": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/GetByFilters": {
+      "post": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilterStudyViewerRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilterStudyViewerRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilterStudyViewerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerListResponseListPaginatedListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerListResponseListPaginatedListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyViewerListResponseListPaginatedListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/Create": {
+      "post": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/Update/{entityGuid}": {
+      "put": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudyViewerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/Enable/{entityGuid}": {
+      "put": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/Disable/{entityGuid}": {
+      "put": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Worker/{workerGuid}/StudyViewer/Delete/{entityGuid}": {
+      "put": {
+        "tags": [
+          "StudyViewer"
+        ],
+        "parameters": [
+          {
+            "name": "workerGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "entityGuid",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/SystemConfiguration/Get": {
       "get": {
         "tags": [
@@ -3158,6 +3701,30 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/SystemConfiguration/UpdateLicenseFromFile": {
+      "put": {
+        "tags": [
+          "SystemConfiguration"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/SystemConfiguration/UpdateLicenseFromCloud": {
+      "put": {
+        "tags": [
+          "SystemConfiguration"
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -4649,6 +5216,24 @@
         },
         "additionalProperties": false
       },
+      "ChangePatientPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "repeatNewPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ClientListResponse": {
         "type": "object",
         "properties": {
@@ -4750,6 +5335,42 @@
           },
           "canBeEdited": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComponentResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePatientAccountRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "repeatNewPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4890,6 +5511,16 @@
         },
         "additionalProperties": false
       },
+      "DepartmentStationListResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DepartmentUserAssignationRequest": {
         "type": "object",
         "properties": {
@@ -4910,7 +5541,8 @@
       "DeviceTypeEnum": {
         "enum": [
           0,
-          1
+          1,
+          2
         ],
         "type": "integer",
         "format": "int32"
@@ -5051,6 +5683,40 @@
         },
         "additionalProperties": false
       },
+      "FilterInstitutionRequest": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "descendant": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "action": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FilterInstitutionTagRequest": {
         "type": "object",
         "properties": {
@@ -5104,11 +5770,11 @@
             "type": "boolean",
             "nullable": true
           },
-          "enabled": {
+          "action": {
             "type": "boolean",
             "nullable": true
           },
-          "action": {
+          "enabled": {
             "type": "boolean",
             "nullable": true
           },
@@ -5122,6 +5788,14 @@
           },
           "sex": {
             "$ref": "#/components/schemas/SexEnum"
+          },
+          "verified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "hasAccount": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5158,33 +5832,73 @@
             "format": "uuid",
             "nullable": true
           },
+          "stationGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "patientGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "responsableGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "departmentGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "visitNumber": {
             "type": "string",
             "nullable": true
           },
-          "institutionName": {
+          "description": {
             "type": "string",
             "nullable": true
           },
-          "departmentName": {
+          "studyDateTimeFrom": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
           },
-          "clientName": {
+          "studyDateTimeTo": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
           },
-          "patientId": {
+          "createdTimeFrom": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
           },
-          "patientName": {
+          "createdTimeTo": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
           },
-          "doctorName": {
+          "createdOnFrom": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
+          },
+          "createdOnTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finished": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientFilterReportRequest"
+          },
+          "station": {
+            "$ref": "#/components/schemas/StationFilterReportRequest"
           }
         },
         "additionalProperties": false
@@ -5325,12 +6039,22 @@
             "type": "string",
             "nullable": true
           },
-          "studyFromDateTime": {
+          "studyDateTimeFrom": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "studyToDateTime": {
+          "studyDateTimeTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdTimeFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdTimeTo": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -5358,6 +6082,55 @@
           "finished": {
             "type": "boolean",
             "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudyStatusEnum"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientFilterStudyRequest"
+          },
+          "station": {
+            "$ref": "#/components/schemas/StationFilterStudyRequest"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterStudyViewerRequest": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "descendant": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "action": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyViewerType": {
+            "$ref": "#/components/schemas/StudyViewerTypeEnum"
+          },
+          "deviceType": {
+            "$ref": "#/components/schemas/DeviceTypeEnum"
           }
         },
         "additionalProperties": false
@@ -5462,7 +6235,8 @@
             "nullable": true
           },
           "enabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "action": {
             "type": "boolean",
@@ -5624,6 +6398,16 @@
         },
         "additionalProperties": false
       },
+      "InstitutionStationListResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InstitutionTagListResponse": {
         "type": "object",
         "properties": {
@@ -5663,6 +6447,83 @@
         },
         "additionalProperties": false
       },
+      "InstitutionTagStationListResponse": {
+        "type": "object",
+        "properties": {
+          "tagName": {
+            "type": "string",
+            "nullable": true
+          },
+          "institution": {
+            "$ref": "#/components/schemas/InstitutionStationListResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenseResponse": {
+        "type": "object",
+        "properties": {
+          "offlineLicense": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientIdentification": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "serverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serverIdentification": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "licenseComponents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentResponse"
+            },
+            "nullable": true
+          },
+          "licenseExpiration": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogInSystemConfigurationResponse": {
+        "type": "object",
+        "properties": {
+          "studyFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginRequest": {
         "type": "object",
         "properties": {
@@ -5685,6 +6546,9 @@
           },
           "token": {
             "$ref": "#/components/schemas/TokenResponse"
+          },
+          "systemConfiguration": {
+            "$ref": "#/components/schemas/LogInSystemConfigurationResponse"
           }
         },
         "additionalProperties": false
@@ -5740,10 +6604,39 @@
       },
       "PacsTypeEnum": {
         "enum": [
-          0
+          0,
+          1
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "PatientFilterReportRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatientFilterStudyRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "PatientListResponse": {
         "type": "object",
@@ -5752,7 +6645,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "dni": {
+          "id": {
             "type": "string",
             "nullable": true
           },
@@ -5801,6 +6694,20 @@
         },
         "additionalProperties": false
       },
+      "PatientReportListResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PatientRequest": {
         "type": "object",
         "properties": {
@@ -5818,6 +6725,10 @@
           },
           "sex": {
             "$ref": "#/components/schemas/SexEnum"
+          },
+          "verified": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5829,7 +6740,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "dni": {
+          "id": {
             "type": "string",
             "nullable": true
           },
@@ -5849,6 +6760,30 @@
           },
           "enabled": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatientStudyListResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecoverAccountRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5932,7 +6867,8 @@
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "pdfFileName": {
             "type": "string",
@@ -5958,9 +6894,15 @@
             "type": "string",
             "format": "uuid"
           },
-          "studyUrl": {
-            "type": "string",
+          "viewers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
+            },
             "nullable": true
+          },
+          "stationViewer": {
+            "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
           },
           "visitNumber": {
             "type": "string",
@@ -5992,7 +6934,13 @@
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientReportListResponse"
+          },
+          "station": {
+            "$ref": "#/components/schemas/StationReportListResponse"
           }
         },
         "additionalProperties": false
@@ -6029,8 +6977,11 @@
             "type": "string",
             "format": "uuid"
           },
-          "studyUrl": {
-            "type": "string",
+          "viewers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
+            },
             "nullable": true
           },
           "visitNumber": {
@@ -6093,7 +7044,8 @@
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6111,11 +7063,11 @@
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "modifiedOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6176,11 +7128,29 @@
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "modifiedOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "userGuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recoveryNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6251,6 +7221,26 @@
         },
         "additionalProperties": false
       },
+      "StationFilterReportRequest": {
+        "type": "object",
+        "properties": {
+          "modality": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StationFilterStudyRequest": {
+        "type": "object",
+        "properties": {
+          "modality": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StationListResponse": {
         "type": "object",
         "properties": {
@@ -6267,6 +7257,19 @@
             "nullable": true
           },
           "departmentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "workerGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "carouselName": {
             "type": "string",
             "nullable": true
           },
@@ -6287,6 +7290,12 @@
           },
           "enabled": {
             "type": "boolean"
+          },
+          "institutionTag": {
+            "$ref": "#/components/schemas/InstitutionTagStationListResponse"
+          },
+          "department": {
+            "$ref": "#/components/schemas/DepartmentStationListResponse"
           }
         },
         "additionalProperties": false
@@ -6316,6 +7325,33 @@
         },
         "additionalProperties": false
       },
+      "StationModalityListResponse": {
+        "type": "object",
+        "properties": {
+          "modality": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StationReportListResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "modality": {
+            "type": "string",
+            "nullable": true
+          },
+          "stationViewer": {
+            "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
+          }
+        },
+        "additionalProperties": false
+      },
       "StationRequest": {
         "type": "object",
         "properties": {
@@ -6332,11 +7368,26 @@
             "format": "uuid",
             "nullable": true
           },
+          "workerGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "studyViewerGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "isOnTime": {
             "type": "boolean"
           },
-          "enabled": {
-            "type": "boolean"
+          "localTimeCorrectionHours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "localTimeCorrectionMinutes": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -6375,8 +7426,39 @@
           "carousel": {
             "$ref": "#/components/schemas/CarouselListResponse"
           },
+          "worker": {
+            "$ref": "#/components/schemas/WorkerListResponse"
+          },
+          "studyViewer": {
+            "$ref": "#/components/schemas/StudyViewerListResponse"
+          },
+          "localTimeCorrectionHours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "localTimeCorrectionMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
           "enabled": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StationStudyListResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "modality": {
+            "type": "string",
+            "nullable": true
+          },
+          "stationViewer": {
+            "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
           }
         },
         "additionalProperties": false
@@ -6391,7 +7473,8 @@
           5,
           6,
           7,
-          8
+          8,
+          -1
         ],
         "type": "integer",
         "format": "int32"
@@ -6403,9 +7486,15 @@
             "type": "string",
             "format": "uuid"
           },
-          "oviyam": {
-            "type": "string",
+          "viewers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
+            },
             "nullable": true
+          },
+          "stationViewer": {
+            "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
           },
           "institutionName": {
             "type": "string",
@@ -6427,13 +7516,24 @@
             "type": "string",
             "nullable": true
           },
+          "studyDateTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "nullable": true
+          },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "modifiedOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudyStatusEnum"
           },
           "action": {
             "$ref": "#/components/schemas/StepActionEnum"
@@ -6441,6 +7541,10 @@
           "reportGuid": {
             "type": "string",
             "format": "uuid",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           },
           "finished": {
@@ -6451,6 +7555,12 @@
           },
           "canBeEdited": {
             "type": "boolean"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientStudyListResponse"
+          },
+          "station": {
+            "$ref": "#/components/schemas/StationStudyListResponse"
           }
         },
         "additionalProperties": false
@@ -6563,27 +7673,28 @@
           },
           "studyDateTime": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           },
           "createdTime": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           },
           "createdOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "modifiedOn": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "finished": {
             "type": "boolean"
           },
-          "oviyam": {
-            "type": "string",
+          "viewers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyViewerListForStudyResponse"
+            },
             "nullable": true
           },
           "preReport": {
@@ -6597,11 +7708,87 @@
             },
             "nullable": true
           },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyStepListResponse"
+            },
+            "nullable": true
+          },
           "enabled": {
             "type": "boolean"
           },
           "canBeEdited": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudyStatusEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StudyStepListResponse": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "action": {
+            "$ref": "#/components/schemas/StepActionEnum"
+          },
+          "madeBy": {
+            "$ref": "#/components/schemas/UserListResponse"
+          },
+          "madeOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudyViewerListForStudyResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "deviceType": {
+            "$ref": "#/components/schemas/DeviceTypeEnum"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "extranetUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "openInNewTab": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isIntranet": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6626,6 +7813,125 @@
           },
           "deviceType": {
             "$ref": "#/components/schemas/DeviceTypeEnum"
+          },
+          "openInNewTab": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isIntranet": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudyViewerListResponseListPaginatedListResponse": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyViewerListResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudyViewerRequest": {
+        "type": "object",
+        "properties": {
+          "workerGuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyViewerType": {
+            "$ref": "#/components/schemas/StudyViewerTypeEnum"
+          },
+          "deviceType": {
+            "$ref": "#/components/schemas/DeviceTypeEnum"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "extranetUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "openInNewTab": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isIntranet": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "parentGuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudyViewerResponse": {
+        "type": "object",
+        "properties": {
+          "guid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "worker": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyViewerType": {
+            "$ref": "#/components/schemas/StudyViewerTypeEnum"
+          },
+          "deviceType": {
+            "$ref": "#/components/schemas/DeviceTypeEnum"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "extranetUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "openInNewTab": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isIntranet": {
+            "type": "boolean",
+            "nullable": true
           },
           "enabled": {
             "type": "boolean"
@@ -6652,6 +7958,80 @@
           "baseTheme": {
             "type": "string",
             "nullable": true
+          },
+          "logInLogoFileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "logInLogoBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "logInLogoContentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoFileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoContentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingEnabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "mailingServer": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingPort": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mailingSenderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingSenderEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientGuid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6666,6 +8046,72 @@
           "baseTheme": {
             "type": "string",
             "nullable": true
+          },
+          "logInLogoFileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "logInLogoBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "logInLogoContentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoFileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuLogoContentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "studyTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportFilterConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "reportTableConfiguration": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingEnabled": {
+            "type": "boolean"
+          },
+          "mailingServer": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingPort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mailingSenderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingSenderEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "license": {
+            "$ref": "#/components/schemas/LicenseResponse"
           }
         },
         "additionalProperties": false
@@ -6683,7 +8129,8 @@
           8,
           9,
           10,
-          11
+          11,
+          12
         ],
         "type": "integer",
         "format": "int32"
@@ -7082,7 +8529,7 @@
         "properties": {
           "dateTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "loadedStudies": {
             "type": "integer",
@@ -7154,9 +8601,6 @@
           "milisecondBetweenSend": {
             "type": "integer",
             "format": "int32"
-          },
-          "enabled": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false
